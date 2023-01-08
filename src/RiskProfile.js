@@ -40,6 +40,7 @@ function TokenForm() {
     .catch(function (error) {
       console.error("Error adding document: ", error);
     });
+    alert("Done ,You will shortly receive your risk profile.")
   }
   const removeTextbox = (index) => {
     const values = [...tokens];
