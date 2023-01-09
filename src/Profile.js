@@ -1,16 +1,13 @@
 import React from "react";
-import {
-  useAccount,
-  useConnect,
-  useDisconnect,
-  usePrepareContractWrite,
-} from "wagmi";
+import { useAccount } from "wagmi";
+import "./Risk.css";
+import "./Profile.css";
 import Navbar from "./Navbar";
-import WalletCard from "./WalletCard";
-import Marketplace from "./Marketplace";
+
 import RiskProfile from "./RiskProfile";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
+
 import FormControl from "@mui/material/FormControl";
 import BaroImage from "./assets/BaroLogo.png";
 
@@ -37,31 +34,27 @@ export function Profile() {
               alignItems: "center",
             }}
           >
-                <React.Fragment>
-                <Box
-                  sx={{
-                    my: 4,
-                    mx: 12,
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                  }}
-                >
-                  <FormControl sx={{ m: -10 }}>
-                    <img src={BaroImage} />
-                  </FormControl>
-                  <FormControl sx={{ m: -8 }}>
-                    <h1>
-                       Generate your risk profile
-                    </h1>
-                  </FormControl>
-                  <FormControl sx={{ m: 8 }}>
-                  <RiskProfile/>
-                  </FormControl>
-
-                </Box>
-              </React.Fragment>
-
+            <React.Fragment>
+              <Box
+                sx={{
+                  my: 4,
+                  mx: 12,
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <FormControl sx={{ m: -10 }}>
+                  <img className="img" src={BaroImage} />
+                </FormControl>
+                <FormControl sx={{ m: -8 }}>
+                  <h1 className="h1">Generate your risk profile</h1>
+                </FormControl>
+                <FormControl sx={{ m: 8 }}>
+                  <RiskProfile />
+                </FormControl>
+              </Box>
+            </React.Fragment>
           </Box>
         </Grid>
       </Box>

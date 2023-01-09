@@ -1,0 +1,29 @@
+@media (min-width: 481px) and (max-width: 767px) {
+  .h1 {
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+  }
+
+  .img {
+    margin: auto;
+    width: 400px;
+    padding: 50px;
+    font-family: "Avenir", sans-serif;
+  }
+}
+
+@media (max-width: 480px) {
+  .h1 {
+    display: flex;
+    justify-content: center;
+    font-size: 25px;
+  }
+
+  .img {
+    margin: auto;
+    width: 400px;
+    padding: 50px;
+    font-family: "Avenir", sans-serif;
+  }
+}
