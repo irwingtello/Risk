@@ -4,12 +4,19 @@ import "firebase/compat/firestore";
 import "firebase/compat/auth";
 import InputLabel from "@mui/material/InputLabel";
 import "./Risk.css";
+import { validate } from "uuid";
 function TokenForm() {
   const [tokens, setTokens] = useState([{ name: "", num: "" }]);
   const [email, setEmail] = useState("");
 
   const handleChange = (e, index) => {
     const values = [...tokens];
+    let strongRegex = new RegExp("^[A-Za-z ]*$");
+    let strongRegex1 = new RegExp("^[0-9.]*$");
+    if (e.target.name === "num" && strongRegex1.test(e.target.value) == false)
+      return false;
+    if (e.target.name === "name" && strongRegex.test(e.target.value) == false)
+      return false;
     if (e.target.name === "name") {
       values[index].name = e.target.value;
     } else if (e.target.name === "num") {
@@ -17,6 +24,7 @@ function TokenForm() {
     } else {
       setEmail(e.target.value);
     }
+
     setTokens(values);
   };
 
@@ -26,26 +34,49 @@ function TokenForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const data = {
-      tokens: tokens.reduce(
-        (obj, value, index) => ({ ...obj, [`Token ${index}`]: value }),
-        {}
-      ),
-      email: email,
-      status: "Unsolved",
-    };
-    const db = firebase.firestore();
-    db.collection("riskScore")
-      .add(data)
-      .then(function (docRef) {
-        console.log("Document written with ID: ", docRef.id);
-        setTokens([{ name: "", num: "" }]);
-        setEmail("");
-      })
-      .catch(function (error) {
-        console.error("Error adding document: ", error);
-      });
-    alert("Done ,You will shortly receive your risk profile.");
+    let rowValidation = false;
+    let strongRegex = new RegExp("^(.+)@(\\S+)*$");
+
+    tokens.forEach((token) => {
+      if (token.name.length === 0 || token.num.length === 0) {
+        rowValidation = true;
+      }
+    });
+
+    if (email.length === 0) {
+      alert("Email cannot be empty.");
+    } else {
+      if (!strongRegex.test(email)) {
+        alert("Email contains invalid characters.");
+      } else {
+        if (rowValidation === false) {
+          const data = {
+            tokens: tokens.reduce(
+              (obj, value, index) => ({ ...obj, [`Token ${index}`]: value }),
+              {}
+            ),
+            email: email,
+            status: "Unsolved",
+          };
+          const db = firebase.firestore();
+
+          db.collection("riskScore")
+            .add(data)
+            .then(function (docRef) {
+              console.log("Document written with ID: ", docRef.id);
+              setTokens([{ name: "", num: "" }]);
+              setEmail("");
+            })
+
+            .catch(function (error) {
+              console.error("Error adding document: ", error);
+            });
+          alert("Done ,You will shortly receive your risk profile.");
+        } else {
+          alert("Name and number of tokens fields cannot be empty.");
+        }
+      }
+    }
   };
   const removeTextbox = (index) => {
     const values = [...tokens];
@@ -97,7 +128,6 @@ function TokenForm() {
         Email:
         <input
           className="input"
-          type="email"
           name="Email"
           value={email}
           onChange={handleChange}
