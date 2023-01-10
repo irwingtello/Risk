@@ -10,6 +10,14 @@ function TokenForm() {
 
   const handleChange = (e, index) => {
     const values = [...tokens];
+
+    let strongRegex = new RegExp("^[A-Za-z ]*$");
+    let strongRegex1 = new RegExp("^[0-9.]*$");
+    if (e.target.name === "num" && strongRegex1.test(e.target.value) == false)
+      return false;
+    if (e.target.name === "name" && strongRegex.test(e.target.value) == false)
+      return false;
+
     if (e.target.name === "name") {
       values[index].name = e.target.value;
     } else if (e.target.name === "num") {
@@ -26,32 +34,54 @@ function TokenForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const data = {
-      tokens: tokens.reduce(
-        (obj, value, index) => ({ ...obj, [`Token ${index}`]: value }),
-        {}
-      ),
-      email: email,
-      status: "Unsolved",
-    };
-    const db = firebase.firestore();
-    db.collection("riskScore")
-      .add(data)
-      .then(function (docRef) {
-        console.log("Document written with ID: ", docRef.id);
-        setTokens([{ name: "", num: "" }]);
-        setEmail("");
-      })
-      .catch(function (error) {
-        console.error("Error adding document: ", error);
-      });
-    alert("Done ,You will shortly receive your risk profile.");
+
+    let strongRegex = new RegExp("^(.+)@(\\S+)*$");
+    let validate = true;
+
+    if (tokens.length === 0) {
+      alert("El nombre del token puede quedar vacío.");
+    }
+
+    if (email.length === 0) {
+      alert("El email no puede quedar vacío.");
+      validate = false;
+    } else {
+      if (!strongRegex.test(email)) {
+        alert("El email contiene caracteres no válidos.");
+        validate = false;
+      }
+    }
+    if (validate == true) {
+      const data = {
+        tokens: tokens.reduce(
+          (obj, value, index) => ({ ...obj, [`Token ${index}`]: value }),
+          {}
+        ),
+        email: email,
+        status: "Unsolved",
+      };
+      const db = firebase.firestore();
+
+      db.collection("riskScore")
+        .add(data)
+        .then(function (docRef) {
+          console.log("Document written with ID: ", docRef.id);
+          setTokens([{ name: "", num: "" }]);
+          setEmail("");
+        })
+
+        .catch(function (error) {
+          console.error("Error adding document: ", error);
+        });
+      alert("Done ,You will shortly receive your risk profile.");
+    }
   };
   const removeTextbox = (index) => {
     const values = [...tokens];
     values.splice(index, 1);
     setTokens(values);
   };
+
   return (
     <form onSubmit={handleSubmit}>
       <div className="div-buttons">
@@ -97,7 +127,6 @@ function TokenForm() {
         Email:
         <input
           className="input"
-          type="email"
           name="Email"
           value={email}
           onChange={handleChange}
