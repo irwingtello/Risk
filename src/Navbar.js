@@ -26,7 +26,7 @@ const Navbar = (props) => {
   const theme = createTheme({
     palette: {
       primary: {
-        main: "#DD7F44",
+        main: "#004AAD",
       },
       secondary: {
         main: "#f44336",
@@ -39,7 +39,7 @@ const Navbar = (props) => {
         <AppBar>
           <Toolbar>
             <Typography variant="h6" color="inherit" noWrap>
-              Baro Capital
+              Baro Score
             </Typography>
           </Toolbar>
         </AppBar>
