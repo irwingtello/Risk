@@ -89,7 +89,7 @@ function TokenForm() {
         {tokens.map((token, index) => (
           <div key={index}>
             <label>
-              Token Name:
+              token name:
               <input
                 className="input"
                 type="text"
@@ -100,7 +100,7 @@ function TokenForm() {
             </label>
             <br></br>
             <label>
-              Number of Tokens:
+              number of tokens:
               <input
                 className="input"
                 name="num"
@@ -114,18 +114,18 @@ function TokenForm() {
               onClick={() => removeTextbox(index)}
               className="buttonremove button2 "
             >
-              Remove
+              remove token
             </button>
           </div>
         ))}
 
         <button type="button" onClick={addToken} className="buttonadd button2 ">
-          Add Token
+          add token
         </button>
       </div>
 
       <label>
-        Email:
+        email:
         <input
           className="input"
           name="Email"
@@ -134,7 +134,7 @@ function TokenForm() {
         />
       </label>
       <button type="submit" className="buttonSubmit button2">
-        Submit
+        give me my risk report!
       </button>
     </form>
   );
