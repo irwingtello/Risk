@@ -1,3 +1,17 @@
+h3 {
+  color: gray;
+}
+
+h1 {
+  padding: 0;
+}
+
+.fast {
+  background: -webkit-linear-gradient( #373B44, #4286f4);
+  -webkit-background-clip: text;
+  background-clip: text;
+ -webkit-text-fill-color: transparent;
+}
 @media (min-width: 481px) and (max-width: 767px) {
   .h1 {
     display: flex;
