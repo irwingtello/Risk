@@ -48,11 +48,11 @@ export function Profile() {
                  <img className="img" src={BaroImage} />
                  </FormControl> */}
                 <FormControl sx={{ m: 4 }}>
-                  <h1 className="h1">find out if your crypto portfolio is risky 😬 from a <span className="fast">professional risk manager.</span></h1>
+                  <h1 className="h1">Find out if your crypto portfolio is risky 😬 from a <span className="fast">professional risk manager.</span></h1>
                 </FormControl>
                 <FormControl sx={{ m: 0 }}>
                   <h3>
-                    enter your token holdings and we'll email you a digestible,  actionable risk report built by a veteran risk manager.
+                    Enter your token holdings and we'll email you a digestible,  actionable risk report built by a veteran risk manager.
                   </h3>
                   <br></br>
                   {/* <h1 className="h1">
