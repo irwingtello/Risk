@@ -44,21 +44,21 @@ export function Profile() {
                   alignItems: "center",
                 }}
               >
-                <FormControl sx={{ m: -4 }}>
-                  <img className="img" src={BaroImage} />
-                </FormControl>
+//                 <FormControl sx={{ m: -4 }}>
+//                   <img className="img" src={BaroImage} />
+//                 </FormControl>
                 <FormControl sx={{ m: 4 }}>
-                  <h1 className="h1">Generate your risk profile</h1>
+                  <h1 className="h1">find out if your crypto portfolio is risky. fast.</h1>
                 </FormControl>
                 <FormControl sx={{ m: 0 }}>
                   <h1 className="h1">
-                    Get your wallet Baro Score delivered to you.
+                    enter your token holdings and we'll email you a digestible,  actionable risk report built by a professional risk manager.
                   </h1>
                   <br></br>
-                  <h1 className="h1">
-                    Just add the assets you own, the number of tokens and
-                    receive your personalized score.
-                  </h1>
+//                   <h1 className="h1">
+//                     Just add the assets you own, the number of tokens and
+//                     receive your personalized score.
+//                   </h1>
                 </FormControl>
                 <FormControl sx={{ m: 8 }}>
                   <RiskProfile />
