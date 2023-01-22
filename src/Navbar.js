@@ -40,7 +40,7 @@ const Navbar = (props) => {
         <AppBar>
           <Toolbar>
             <Typography variant="h6" color="inherit" noWrap>
-              risk.it
+              riskit
             </Typography>
           </Toolbar>
         </AppBar>
